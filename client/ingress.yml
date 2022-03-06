@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nest-next-client-ingress
+spec:
+  # ingressClassName: nest-next-client-ingress-example
+  rules:
+    - host: client.devops.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nest-next-client-service
+                port:
+                  number: 3000

@@ -1,0 +1,46 @@
+version: "3.8"
+
+networks:
+  corp:
+    driver: bridge
+
+services:
+  nest-next-server:
+    container_name: nest-next-server
+    build:
+      context: ./
+      # cache_from:
+      #   - nest-next-server
+      dockerfile: ./server/Dockerfile
+      args:
+        NODE_ENV: "production"
+        BUILD_FLAG: ""
+    image: nest-next-server
+    ports:
+      - 3333:3333
+    environment:
+      NODE_ENV: "production"
+      PORT: 3333
+    networks:
+      - corp
+    restart: on-failure
+
+  client:
+    container_name: nest-next-client
+    build:
+      context: ./
+      # cache_from:
+      #   - nest-next-server
+      dockerfile: ./client/Dockerfile
+      args:
+        NODE_ENV: "production"
+        BUILD_FLAG: ""
+    image: nest-next-client
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: "production"
+      PORT: 3000
+    networks:
+      - corp
+    restart: on-failure
