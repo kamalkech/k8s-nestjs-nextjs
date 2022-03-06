@@ -1,0 +1,22 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: {{ .Values.nest_next_server.name }}-service
+# spec:
+#   type: {{ .Values.nest_next_server.service.type }}
+#   ports:
+#     - port: 3333
+#       targetPort: {{ .Values.nest_next_server.image.exposedPort }}
+#   selector:
+#     server: {{ .Values.nest_next_server.name }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: nest-next-server-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 3333
+  selector:
+    server: nest-next-server

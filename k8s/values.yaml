@@ -1,0 +1,41 @@
+nest_next_server:
+  name: nest-next-server
+
+  image:
+    name: nest-next-server
+    tag: latest
+    exposedPort: 3333
+
+  replicas: 2
+
+  env:
+    NODE_ENV: production
+
+  service:
+    type: LoadBalancer
+
+  ingress:
+    spec:
+      rules:
+        host: server.devops.local
+
+nest_next_client:
+  name: nest-next-server
+
+  image:
+    name: nest-next-server
+    tag: latest
+    exposedPort: 3000
+
+  replicas: 2
+
+  env:
+    NODE_ENV: production
+
+  service:
+    type: LoadBalancer
+
+  ingress:
+    spec:
+      rules:
+        host: client.devops.local

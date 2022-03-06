@@ -1,0 +1,34 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: {{ .Values.nest_next_client.name }}-ingress
+# spec:
+#   # ingressClassName: {{ .Values.nest_next_client.name }}-ingress-example
+#   rules:
+#     - host: {{ .Values.nest_next_client.ingress.spec.rules.host }}
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: {{ .Values.nest_next_client.name }}-service
+#                 port:
+#                   number: {{ .Values.nest_next_client.image.exposedPort }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nest-next-client-ingress
+spec:
+  # ingressClassName: nest-next-client-ingress-example
+  rules:
+    - host: client.devops.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nest-next-client-service
+                port:
+                  number: 3000

@@ -1,0 +1,46 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: {{ .Values.nest_next_server.name }}-deployment
+# spec:
+#   replicas: {{ .Values.nest_next_server.replicas }}
+#   selector:
+#     matchLabels:
+#       server: {{ .Values.nest_next_server.name }}
+#   template:
+#     metadata:
+#       labels:
+#         server: {{ .Values.nest_next_server.name }}
+#     spec:
+#       containers:
+#         - name: {{ .Values.nest_next_server.name }}
+#           image: {{ .Values.nest_next_server.image.name }}:{{ .Values.nest_next_server.image.tag }}
+#           imagePullPolicy: Never
+#           ports:
+#             - containerPort: {{ .Values.nest_next_server.image.exposedPort }}
+#           env:
+#             - name: NODE_ENV
+#               value: {{ .Values.nest_next_server.env.NODE_ENV }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nest-next-server-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      server: nest-next-server
+  template:
+    metadata:
+      labels:
+        server: nest-next-server
+    spec:
+      containers:
+        - name: nest-next-server
+          image: nest-next-server
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3333
+          env:
+            - name: NODE_ENV
+              value: production
