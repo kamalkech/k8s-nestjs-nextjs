@@ -20,10 +20,10 @@ nest_next_server:
         host: server.devops.local
 
 nest_next_client:
-  name: nest-next-server
+  name: nest-next-client
 
   image:
-    name: nest-next-server
+    name: nest-next-client
     tag: latest
     exposedPort: 3000
 
