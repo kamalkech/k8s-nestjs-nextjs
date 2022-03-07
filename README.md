@@ -27,7 +27,7 @@ helm install ./k8s --generate-name
 
 ## Hosting
 
-### Local machine
+##### Local machine
 
 Get IP :
 
